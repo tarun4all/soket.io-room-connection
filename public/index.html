@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+            function start() {
+                socket.emit('room', document.getElementById('t1').value);
+            }
+            
+            function shoot() {
+                socket.emit('shoot', document.getElementById('t2').value);
+            }
+            socket.on('message', function(data) {
+                console.log('Incoming message:', data);
+            });
+        </script>
+        <center>
+            <input type="text" id="t1"> <button onclick="start()">start</button> <br><br><br>
+            <input type="text" id="t2"> <button onclick="shoot()">shoot</button> 
+        </center>
+    </body>
+</html>
